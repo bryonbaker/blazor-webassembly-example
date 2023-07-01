@@ -1,0 +1,34 @@
+﻿@using Outrage.Patternfly.Components.Navigation
+@using Outrage.Patternfly.Components.Page
+@inherits LayoutComponentBase
+
+<PatternflyPage FillMainContent="true">
+    <Logo>
+        <img class="pf-c-brand pf-u-display-block pf-u-display-none-on-md" style="height: 64px;"src="/images/icon_only.svg" alt="Patternfly">
+        <img class="pf-c-brand pf-u-display-none pf-u-display-block-on-md" style="height: 64px;" src="/images/icon.svg" alt="Patternfly">
+    </Logo>
+    <Header>
+        <PatternflyNavigation Horizontal="true">
+            <PatternflyNavigationGroup>
+                <PatternflyNavigationLink Href="" Match="NavLinkMatch.All">Home</PatternflyNavigationLink>
+            </PatternflyNavigationGroup>
+        </PatternflyNavigation>
+    </Header>
+    <Sections>
+        <PatternflyPageSection Fill="true" Color="SectionColor.normal">
+            @Body
+        </PatternflyPageSection>
+        <PatternflyPageSection Color="SectionColor.dark_200">
+            Outrage Patternfly is Copyright (C) Webefinity Pty. Ltd. 2022.
+        </PatternflyPageSection>
+    </Sections>
+    <Sidebar>
+        <PatternflyNavigation>
+            <PatternflyNavigationGroup>
+                <PatternflyNavigationLink Href="getting-started" Icon="play">Getting Started</PatternflyNavigationLink>
+                <PatternflyNavigationLink Href="counter" Icon="newspaper">Counter Page</PatternflyNavigationLink>
+                ...
+            </PatternflyNavigationGroup>
+        </PatternflyNavigation>
+    </Sidebar>
+</PatternflyPage>
