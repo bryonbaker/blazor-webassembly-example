@@ -1,12 +1,14 @@
 ﻿@page "/counter"
+@using Outrage.Patternfly.Components.Utilities
+@using Outrage.Patternfly.Components.Button
 
 <PageTitle>Counter</PageTitle>
 
-<h1>Counter</h1>
+<PatternflyH1>Counter</PatternflyH1>
 
 <p role="status">Current count: @currentCount</p>
 
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<PatternflyButton Clicked="IncrementCount">Click me</PatternflyButton>
 
 @code {
     private int currentCount = 0;
