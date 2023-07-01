@@ -31,15 +31,18 @@
 </PatternflyEditForm>
 
 @code {
+    FormModel formModel = new();
+
     public class FormModel {
         [Required(ErrorMessage = "Name is needed you idiot!")]  // From DataAnnotations component
         public string Name{get;set;}
         [Required, Range(0,100)]                                // From DataAnnotations component
         public int Age{get;set;}
     }
-    public Task SubmitForm() {
-        return Task.CompletedTask;
-    }
 
-    FormModel formModel = new();
+    public async Task SubmitForm() {
+        var httpClient = new System.Net.Http.HttpClient();
+        var resp = await httpClient.PostAsJsonAsync("http://localhost:8081/",formModel);
+        return;
+    }
 }
