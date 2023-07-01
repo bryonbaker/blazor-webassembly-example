@@ -1,0 +1,45 @@
+﻿@page "/getting-started"
+@using Outrage.Patternfly.Components.Utilities
+@using Outrage.Patternfly.Components.Button
+@using Outrage.Patternfly.Components.Form
+@using System.ComponentModel.DataAnnotations
+
+<PageTitle>My Form</PageTitle>
+
+<PatternflyH1>Counter</PatternflyH1>
+
+<PatternflyEditForm Model="formModel" OnValidSubmit="SubmitForm">
+    <DataAnnotationsValidator />
+    <PatternflyFieldGroup Label="Name">
+        <Help>Your name</Help>
+        <Editors>
+            <PatternflyInputText @bind-Value="formModel.Name"/>
+            <PatternflyValidationMessage For="() => formModel.Name"/>
+        </Editors>
+    </PatternflyFieldGroup>
+    <PatternflyFieldGroup Label="Age">
+        <Help>Your age</Help>
+        <Editors>
+            <PatternflyInputNumber @bind-Value="formModel.Age"/>
+            <PatternflyValidationMessage For="() => formModel.Age"/>
+        </Editors>
+    </PatternflyFieldGroup>
+    <PatternflyValidationSummary/>
+    <PatternflyActionGroup>
+        <PatternflyButton Type="submit">Save</PatternflyButton>
+    </PatternflyActionGroup>
+</PatternflyEditForm>
+
+@code {
+    public class FormModel {
+        [Required(ErrorMessage = "Name is needed you idiot!")]  // From DataAnnotations component
+        public string Name{get;set;}
+        [Required, Range(0,100)]                                // From DataAnnotations component
+        public int Age{get;set;}
+    }
+    public Task SubmitForm() {
+        return Task.CompletedTask;
+    }
+
+    FormModel formModel = new();
+}
