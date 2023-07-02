@@ -1,7 +1,8 @@
-POST http://localhost:8081  HTTP/1.1
+POST http://localhost:8081 HTTP/1.1
 content-type: application/json
 
 {
     "name": "fred",
-    "age": 25
+    "age": 25,
+    "gender" : "Male"
 }

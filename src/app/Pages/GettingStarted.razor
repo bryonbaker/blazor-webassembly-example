@@ -2,6 +2,7 @@
 @using Outrage.Patternfly.Components.Utilities
 @using Outrage.Patternfly.Components.Button
 @using Outrage.Patternfly.Components.Form
+@using Outrage.Patternfly.Components.Select
 @using System.ComponentModel.DataAnnotations
 
 <PageTitle>My Form</PageTitle>
@@ -24,6 +25,13 @@
             <PatternflyValidationMessage For="() => formModel.Age"/>
         </Editors>
     </PatternflyFieldGroup>
+    <PatternflyFieldGroup Label="Gender">
+        <Help>Your gender</Help>
+        <Editors>
+            <PatternflySelect TKey="int" TValue="string" Options="genderValues" Text="Select a gender" @bind-SelectedKey="formModel.Gender"/>
+            <PatternflyValidationMessage For="() => formModel.Gender"/>
+        </Editors>
+    </PatternflyFieldGroup>
     <PatternflyValidationSummary/>
     <PatternflyActionGroup>
         <PatternflyButton Type="submit">Save</PatternflyButton>
@@ -38,6 +46,8 @@
         public string Name{get;set;}
         [Required, Range(0,100)]                                // From DataAnnotations component
         public int Age{get;set;}
+        [Required]
+        public int Gender{get;set;}
     }
 
     public async Task SubmitForm() {
@@ -45,4 +55,12 @@
         var resp = await httpClient.PostAsJsonAsync("http://localhost:8081/",formModel);
         return;
     }
+
+    IEnumerable<KeyValuePair<int, string>> genderValues = new KeyValuePair<int, string>[]
+    {
+        new KeyValuePair<int, string>(1, "Male"),
+        new KeyValuePair<int, string>(2, "Female"),
+        new KeyValuePair<int, string>(3, "Binary non-determinate"),
+        new KeyValuePair<int, string>(4, "Screwed up"),
+    };
 }

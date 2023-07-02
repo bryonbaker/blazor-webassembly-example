@@ -11,8 +11,9 @@ import (
 
 // Person struct to hold the JSON data
 type Person struct {
-	Name string `json:"name"`
-	Age  int    `json:"age"`
+	Name   string `json:"name"`
+	Age    int    `json:"age"`
+	Gender int    `json:"gender"`
 }
 
 func main() {
@@ -48,7 +49,7 @@ func PersonHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Print the result to the console
-	fmt.Printf("Name: %s, Age: %d\n", p.Name, p.Age)
+	fmt.Printf("Name: %s, Age: %d, Gender: %d\n", p.Name, p.Age, p.Gender)
 
 	// Respond to the client
 	w.WriteHeader(http.StatusOK)
